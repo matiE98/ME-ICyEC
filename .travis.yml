@@ -23,4 +23,4 @@ deploy:
   api_key: $HEROKU
   on:
     branch: master
-  app: icyec-me
+  app: me-icyec
