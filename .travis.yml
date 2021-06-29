@@ -6,6 +6,11 @@ branches:
     - "/^release-[0-999].[0-999]$/"
     - master
 notifications:
+  slack: 
+    rooms: 
+      - '<matiasevin98>:<GaWGFAlZnXvd96D3-1acrw>#feedback' 
+    on_success: always
+    on_failure: always
   email:
     recipients:
       - matiasevin98@gmail.com
