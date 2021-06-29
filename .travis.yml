@@ -1,0 +1,26 @@
+language: java
+#jdk: openjdk14 #problems with sonar-maven-plugin
+branches:
+  only:
+    - develop
+    - "/^release-[0-999].[0-999]$/"
+    - master
+notifications:
+  email:
+    recipients:
+      - matiasevin98@gmail.com
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+  - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
+
+    # Config SonarCloud
+  - mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=matie98 -Dsonar.login=$SONAR
+
+    # Config deploy en HEROKU
+deploy:
+  provider: heroku
+  api_key: $HEROKU
+  on:
+    branch: master
+  app: icyec-me
